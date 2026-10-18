@@ -1,4 +1,5 @@
 import vinext from "vinext";
+import { resolve } from "node:path";
 import { defineConfig } from "vite";
 import hostingConfig from "./.openai/hosting.json";
 import { readExecutionProfile } from "./scripts/execution-profile.mjs";
@@ -22,7 +23,7 @@ const localBindingConfig = {
         {
           binding: d1,
           database_name: "site-creator-d1",
-          migrations_dir: "./drizzle",
+          migrations_dir: resolve(process.cwd(), "drizzle"),
           database_id: SITE_CREATOR_PLACEHOLDER_DATABASE_ID,
         },
       ]
