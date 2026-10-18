@@ -3,8 +3,8 @@ export const db = () => { if (!env.DB) throw new Error('Database unavailable'); 
 export const bucket = () => { if (!env.BUCKET) throw new Error('Storage unavailable'); return env.BUCKET; };
 export function json(value: unknown, status = 200) { return Response.json(value, { status, headers: { 'Cache-Control': 'no-store' } }); }
 export async function admin(req: Request) {
- const secret = (env as unknown as Record<string,string>).ADMIN_KEY;
- if (!secret) return false;
+ // Fixed server-side password, explicitly requested by the site owner.
+ const secret = 'irang1117';
  const supplied = req.headers.get('Authorization')?.replace(/^Bearer /, '') || '';
  const digest = async (v: string) => new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(v)));
  const [a,b] = await Promise.all([digest(secret),digest(supplied)]);
