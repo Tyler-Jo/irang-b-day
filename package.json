@@ -8,7 +8,7 @@
   "scripts": {
     "install:ci": "node scripts/install-ci.mjs",
     "dev": "node scripts/run-framework.mjs dev",
-    "build": "node scripts/run-framework.mjs build && sed -i 's/00000000-0000-4000-8000-000000000000/ff4189de-7803-4c58-96a3-925a19da4ef2/g' dist/server/wrangler.json",
+    "build": "node scripts/run-framework.mjs build && node scripts/finalize-build.mjs",
     "start": "node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js dev --config dist/server/wrangler.json --local --persist-to .wrangler/state --ip 127.0.0.1 --inspector-port 0",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
     "db:generate": "drizzle-kit generate",

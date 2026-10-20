@@ -14,3 +14,5 @@
 .countdown-unit span{font-size:10px;color:var(--muted)}
 .countdown-note{font-size:10px;color:#777d66;line-height:1.8}
 @media(max-width:560px){.countdown{padding:20px 12px 16px}.countdown-unit strong{font-size:29px}}
+
+.photo-order-actions{margin-bottom:10px}.admin-form .admin-hint,.admin-form li{overflow-wrap:anywhere}

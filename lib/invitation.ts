@@ -4,5 +4,5 @@ export const defaults = {
  hosts: '이랑이 엄마 · 아빠 드림', heroId: '', notice: '함께해 주시는 마음만으로도 큰 선물입니다.'
 };
 export type Settings = typeof defaults;
-export type Photo = { id: string; caption: string; created_at: string };
+export type Photo = { sort_order: number; id: string; caption: string; created_at: string };
 export type Comment = { id: string; name: string; message: string; created_at: string };

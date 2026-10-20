@@ -10,6 +10,6 @@ export async function POST(req:Request) {
  const count=await db().prepare('SELECT count(*) AS n FROM photos').first<{n:number}>();
  if((count?.n||0)>=60) return json({error:'사진은 최대 60장까지 올릴 수 있습니다.'},400);
  const id=crypto.randomUUID(); await bucket().put(id,bytes,{httpMetadata:{contentType:mime}});
- try { await db().prepare('INSERT INTO photos (id,caption,created_at) VALUES (?,?,?)').bind(id,caption,new Date().toISOString()).run(); } catch(e) { await bucket().delete(id); throw e; }
+ try { await db().prepare('INSERT INTO photos (id,caption,created_at,sort_order) SELECT ?,?,?,COALESCE(MAX(sort_order),-1)+1 FROM photos').bind(id,caption,new Date().toISOString()).run(); } catch(e) { await bucket().delete(id); throw e; }
  return json({id},201);
 }
